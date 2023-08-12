@@ -16,8 +16,8 @@ public class Post {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "writer_member_id")
-    private Member writer;
+    @JoinColumn(name = "writer_user_id")
+    private UserEntity writer;
 
     private String title;
     private String body;

@@ -3,14 +3,13 @@ package com.github.practice.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Member {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

@@ -1,6 +1,6 @@
 package com.github.practice.service;
 
-import com.github.practice.domain.Member;
+import com.github.practice.domain.UserEntity;
 import com.github.practice.dto.LoginRequest;
 import com.github.practice.dto.SignUpRequest;
 import com.github.practice.repository.UserRepository;
@@ -35,7 +35,7 @@ public class UserService {
         String encryptedPassword = passwordEncoder.encode(password);
 
         // 회원 생성 및 저장
-        Member newUser = Member.builder()
+        UserEntity newUser = UserEntity.builder()
                 .email(email)
                 .password(encryptedPassword)
                 .build();
@@ -50,11 +50,11 @@ public class UserService {
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
 
-        Member member = userRepository.findByEmail(email)
+        UserEntity userEntity = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        if(passwordEncoder.matches(password, member.getPassword())){
+        if(passwordEncoder.matches(password, userEntity.getPassword())){
             // 비밀번호가 일치하는 경우, JWT 토큰 생성
-            String token = jwtService.encode(member.getId());
+            String token = jwtService.encode(userEntity.getId());
             return token;
         } else {
             throw new RuntimeException("Invalid password");
