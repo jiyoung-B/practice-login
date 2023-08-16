@@ -62,4 +62,10 @@ public class UserService {
 
 
     }
+
+    public boolean logout(String email) {
+        // 클라이언트에서 토큰을 삭제하므로 별도의 작업은 필요하지 않음.
+        // 필요하다면 여기 추가 로직을 구현.
+        return true; // 로그아웃 성공
+    }
 }
